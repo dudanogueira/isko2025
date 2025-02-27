@@ -22,6 +22,15 @@ services:
       ENABLE_API_BASED_MODULES: 'true'
       CLUSTER_HOSTNAME: 'node1'
       ENABLE_MODULES: 'text2vec-ollama'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    volumes:
+      - ollama_data:/root/.ollama  
 volumes:
   weaviate_data:
+  ollama_data:
 ...
